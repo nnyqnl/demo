@@ -48,4 +48,15 @@ public class ResultDto {
         this.msg = msg;
         this.data = data;
     }
+
+    public ResultDto(Object data) {
+
+        this.code = "200";
+        this.msg = "ok";
+        this.data = data;
+    }
+    public static ResultDto ok(Object data) {
+
+        return new ResultDto(data);
+    }
 }
