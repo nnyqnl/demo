@@ -1,0 +1,353 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>人力管理系统</title>
+        <!--<link type="text/css" href="bootstrap/css/bootstrap.css" rel="stylesheet">-->
+        <link type="text/css" href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        <link type="text/css" href="bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">
+        <link type="text/css" href="css/theme.css" rel="stylesheet">
+        <link type="text/css" href="images/icons/css/font-awesome.css" rel="stylesheet">
+        <link type="text/css" href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,400,600'
+            rel='stylesheet'>
+        <link rel="stylesheet" type="text/css" media="all" href="bootstrap/css/daterangepicker-bs3.css" />
+        <link rel="stylesheet" type="text/css" media="all" href="bootstrap/css/bootstrap-table.css" />
+
+    </head>
+    <body>
+        <div class="navbar navbar-fixed-top">
+            <div class="navbar-inner">
+                <div class="container">
+                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".navbar-inverse-collapse">
+                        <i class="icon-reorder shaded"></i></a><a class="brand" href="index.html">人力管理系统 </a>
+                    <div class="nav-collapse collapse navbar-inverse-collapse">
+                        <ul class="nav nav-icons">
+                            <li class="active"><a href="#"><i class="icon-envelope"></i></a></li>
+                            <li><a href="#"><i class="icon-eye-open"></i></a></li>
+                            <li><a href="#"><i class="icon-bar-chart"></i></a></li>
+                        </ul>
+                        <form class="navbar-search pull-left input-append" action="#">
+                        <input type="text" class="span3">
+                        <button class="btn" type="button">
+                            <i class="icon-search"></i>
+                        </button>
+                        </form>
+                        <ul class="nav pull-right">
+                            <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown
+                                <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="#">Item No. 1</a></li>
+                                    <li><a href="#">Don't Click</a></li>
+                                    <li class="divider"></li>
+                                    <li class="nav-header">Example Header</li>
+                                    <li><a href="#">A Separated link</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="#">Support </a></li>
+                            <li class="nav-user dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <img src="images/user.png" class="nav-avatar" />
+                                <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="#">Your Profile</a></li>
+                                    <li><a href="#">Edit Profile</a></li>
+                                    <li><a href="#">Account Settings</a></li>
+                                    <li class="divider"></li>
+                                    <li><a href="#">Logout</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- /.nav-collapse -->
+                </div>
+            </div>
+            <!-- /navbar-inner -->
+        </div>
+        <!-- /navbar -->
+        <div class="wrapper">
+            <div class="container">
+                <div class="row">
+                    <div class="span3">
+                        <div class="sidebar">
+                            <ul class="widget widget-menu unstyled">
+                                <li class="active"><a href="index.html"><i class="menu-icon icon-dashboard"></i>请假</a></li>
+                                <li><a href="cardRecord.html"><i class="menu-icon icon-bullhorn"></i>打卡记录 </a></li>
+                                <li><a href="attendance.html"><i class="menu-icon icon-inbox"></i>考勤记录</a></li>
+                                <li><a href="task.html"><i class="menu-icon icon-tasks"></i>加班</a></li>
+                            </ul>
+                            <!--/.widget-nav-->
+                            <ul class="widget widget-menu unstyled">
+                                <li><a href="ui-button-icon.html"><i class="menu-icon icon-bold"></i> Buttons </a></li>
+                                <li><a href="ui-typography.html"><i class="menu-icon icon-book"></i>Typography </a></li>
+                                <li><a href="form.html"><i class="menu-icon icon-paste"></i>Forms </a></li>
+                                <li><a href="table.html"><i class="menu-icon icon-table"></i>Tables </a></li>
+                                <li><a href="charts.html"><i class="menu-icon icon-bar-chart"></i>Charts </a></li>
+                            </ul>
+                            <!--/.widget-nav-->
+                            <ul class="widget widget-menu unstyled">
+                                <li><a class="collapsed" data-toggle="collapse" href="#togglePages"><i class="menu-icon icon-cog">
+                                </i><i class="icon-chevron-down pull-right"></i><i class="icon-chevron-up pull-right">
+                                </i>More Pages </a>
+                                    <ul id="togglePages" class="collapse unstyled">
+                                        <li><a href="other-login.html"><i class="icon-inbox"></i>Login </a></li>
+                                        <li><a href="other-user-profile.html"><i class="icon-inbox"></i>Profile </a></li>
+                                        <li><a href="other-user-listing.html"><i class="icon-inbox"></i>All Users </a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="#"><i class="menu-icon icon-signout"></i>Logout </a></li>
+                            </ul>
+                        </div>
+                        <!--/.sidebar-->
+                    </div>
+                    <!--/.span3-->
+                    <div class="span9">
+                        <div class="content">
+                            <div class="module messageEnum">
+                                <div class="module-head">
+                                    <h3>
+                                        考勤页面</h3>
+                                </div>
+                                <div class="module-option clearfix">
+                                    <form id="attendanceSearchForm" action="http://localhost:8082/demo/attendance/attendanceSearch" method="get">
+                                    <div class="input-append pull-left">
+
+                                        <button type="button" class="btn">日期</button>
+
+                                        <!--<span class="add-on input-group-addon"><i class="glyphicon glyphicon-calendar fa fa-calendar"></i></span>-->
+                                        <input type="text" readonly style="width: 200px" name="attendanceDateRange" id="reservation"
+                                               class="form-control" value=""/>
+                                        <input type="hidden" readonly style="width: 200px" name="employeeNumber"
+                                               class="form-control" value="AAA000001"/>
+
+                                        <!--<button type="button" class="btn">人员类型：</button>-->
+
+                                        <!--<select name="employeeType" class="form-control" onchange="selectOnchang(this)">-->
+                                            <!--<option value="">公司内勤</option>-->
+                                            <!--<option>IT人力</option>-->
+                                            <!--<option>劳务工</option>-->
+                                            <!--<option>临时员工</option>-->
+                                        <!--</select>-->
+                                    </div>
+                                    <div class="btn-group pull-right" data-toggle="buttons-radio">
+                                        <button type="button" class="btn" onclick="searchBtn()">查询</button>
+                                        <button type="button" class="btn">导出</button>
+                                    </div>
+                                    </form>
+                                </div>
+                                <!--中间的部分-->
+                                <div class="module-body table">
+                                    <table id="grid" class="table">
+
+                                    </table>
+                                </div>
+                                <div class="module-foot">
+                                </div>
+                            </div>
+                        </div>
+                        <!--/.content-->
+                    </div>
+                    <!--/.span9-->
+                </div>
+            </div>
+            <!--/.container-->
+        </div>
+        <!--/.wrapper-->
+        <div class="footer">
+            <div class="container">
+                <b class="copyright">&copy; 2014 Edmin - EGrappler </b>All rights reserved. More Templates <a href="http://www.cssmoban.com/" target="_blank" title="模板之家">模板之家</a> - Collect from <a href="http://www.cssmoban.com/" title="网页模板" target="_blank">网页模板</a>
+            </div>
+        </div>
+
+        <script type="text/javascript" src="scripts/jquery-1.11.3.min.js"></script>
+        <script type="text/javascript" src="scripts/jquery-ui-1.10.1.custom.min.js"></script>
+        <script type="text/javascript" src="bootstrap/js/bootstrap.js"></script>
+        <script type="text/javascript" src="bootstrap/js/moment.js"></script>
+        <script type="text/javascript" src="bootstrap/js/daterangepicker.js"></script>
+        <script type="text/javascript" src="bootstrap/js/bootstrap-table.js"></script>
+        <!--日历控件 start-->
+        <script type="text/javascript">
+            $(document).ready(function() {
+                $('#reservation').daterangepicker(null, function(start, end, label) {
+                    console.log(start.toISOString(), end.toISOString(), label);
+                });
+            });
+        </script>
+        <!--日历控件 end-->
+
+        <script type="text/javascript">
+            var attendanceDate=undefined;
+            function searchBtn() {
+
+                $.ajax({
+                    url : 'http://localhost:8082/demo/attendance/attendanceSearch',
+                    type : 'get',
+                    data : $('#attendanceSearchForm').serialize(),
+                    success : function(data){
+                        if("200"==data.code){
+                            //返回成功
+
+
+                            var rtndata = {rows:data.data};
+                            $('#grid').bootstrapTable({
+                                data:rtndata.rows,
+                                dataType: "json",
+                                // data:json.data.dataList,
+                                cache: false, // 不缓存
+                                // height: getHeight(), // 设置高度，会启用固定表头的特性
+                                striped: true, // 隔行加亮
+                                pagination: true, // 开启分页功能
+                                search: false, // 开启搜索功能
+                                showColumns: false, // 开启自定义列显示功能
+                                showRefresh: false, // 开启刷新功能
+                                // queryParams: queryParams,
+                                pageSize: 2, //每页的记录行数（*）
+                                minimumCountColumns: 2, // 设置最少显示列个数
+                                clickToSelect: true, // 单击行即可以选中
+                                uniqueId: "id", //每一行的唯一标识，一般为主键列
+                                sortName: 'attendanceDate', // 设置默认排序为 name
+                                sortOrder: 'desc', // 设置排序为反序 desc
+                                columns: [{
+                                    field: 'SerialNumber',
+                                    title: '序号',
+                                    align: 'center',
+                                    valign: 'middle',
+                                    formatter: function (value, row, index) {
+                                        return index+1;
+                                    }
+                                },{
+                                    field: 'id',
+                                    title: '主键id',
+                                    align: 'center',
+                                    valign: 'middle',
+                                    visible: false,
+                                    sortable: true // 开启排序功能
+                                },{
+                                    field: 'employeeNumber',
+                                    title: '员工工号',
+                                    align: 'center',
+                                    valign: 'middle',
+                                    sortable: true // 开启排序功能
+                                }, {
+                                    field: 'attendanceDate',
+                                    title: '日期',
+                                    align: 'center',
+                                    valign: 'middle',
+                                    sortable: true,
+                                    formatter: function (value, row, index) {
+                                        // return changeDateFormat(value)
+                                        return timestampToTime(value);
+                                    }
+                                },{
+                                    field: 'workingHours',
+                                    title: '出勤时间',
+                                    align: 'center',
+                                    valign: 'middle',
+                                    sortable: true // 开启排序功能
+                                },  {
+                                    field: 'type',
+                                    title: '考勤类型',
+                                    align: 'center',
+                                    valign: 'middle',
+                                    formatter: function (value) {
+                                        if (value == 1) {
+                                            return '正常';
+                                        }
+                                        else
+                                            return '异常';
+                                    }
+                                }]
+
+                        })
+
+                        }
+                    }
+                });
+                // $('#attendanceSearchForm').submit();
+            }
+        </script>
+        <script type="text/javascript">
+            //将时间戳格式化成固定日期格式
+            function timestampToTime(timestamp) {
+                var date = new Date(timestamp);//时间戳为10位需*1000，时间戳为13位的话不需乘1000
+                Y = date.getFullYear() + '-';
+                M = (date.getMonth()+1 < 10 ? '0'+(date.getMonth()+1) : date.getMonth()+1) + '-';
+                D = date.getDate() + ' ';
+                h = date.getHours() + ':';
+                m = date.getMinutes() + ':';
+                s = date.getSeconds();
+                return Y+M+D;
+            }
+        </script>
+        <!--<script type="text/javascript">-->
+            <!--var $table;-->
+            <!--//初始化bootstrap-table的内容-->
+            <!--function searchBtn () {-->
+                <!--//记录页面bootstrap-table全局变量$table，方便应用-->
+                <!--var queryUrl = 'http://localhost:8082/demo/attendance/attendanceSearch'-->
+                <!--$table = $('#grid').bootstrapTable({-->
+                    <!--url: queryUrl,                      //请求后台的URL（*）-->
+                    <!--method: 'GET',                      //请求方式（*）-->
+                    <!--//toolbar: '#toolbar',              //工具按钮用哪个容器-->
+                    <!--striped: true,                      //是否显示行间隔色-->
+                    <!--cache: false,                       //是否使用缓存，默认为true，所以一般情况下需要设置一下这个属性（*）-->
+                    <!--pagination: true,                   //是否显示分页（*）-->
+                    <!--sortable: true,                     //是否启用排序-->
+                    <!--sortOrder: "asc",                   //排序方式-->
+                    <!--sidePagination: "server",           //分页方式：client客户端分页，server服务端分页（*）-->
+                    <!--pageNumber: 1,                      //初始化加载第一页，默认第一页,并记录-->
+                    <!--pageSize: 10,                     //每页的记录行数（*）-->
+                    <!--pageList: [10, 25, 50, 100],        //可供选择的每页的行数（*）-->
+                    <!--search: false,                      //是否显示表格搜索-->
+                    <!--strictSearch: true,-->
+                    <!--showColumns: true,                  //是否显示所有的列（选择显示的列）-->
+                    <!--showRefresh: true,                  //是否显示刷新按钮-->
+                    <!--minimumCountColumns: 2,             //最少允许的列数-->
+                    <!--clickToSelect: true,                //是否启用点击选中行-->
+                    <!--//height: 500,                      //行高，如果没有设置height属性，表格自动根据记录条数觉得表格高度-->
+                    <!--uniqueId: "ID",                     //每一行的唯一标识，一般为主键列-->
+                    <!--showToggle: true,                   //是否显示详细视图和列表视图的切换按钮-->
+                    <!--cardView: false,                    //是否显示详细视图-->
+                    <!--detailView: false,                  //是否显示父子表-->
+                    <!--//得到查询的参数-->
+                    <!--queryParams : function (params) {-->
+                        <!--//这里的键的名字和控制器的变量名必须一直，这边改动，控制器也需要改成一样的-->
+                        <!--var temp = {-->
+                            <!--rows: params.limit,                         //页面大小-->
+                            <!--page: (params.offset / params.limit) + 1,   //页码-->
+                            <!--sort: params.sort,      //排序列名-->
+                            <!--sortOrder: params.order //排位命令（desc，asc）-->
+                        <!--};-->
+                        <!--return temp;-->
+                    <!--},-->
+                    <!--columns: [{-->
+                        <!--checkbox: true,-->
+                        <!--visible: true                  //是否显示复选框-->
+                    <!--}, {-->
+                        <!--field: 'employeeNumber',-->
+                        <!--title: '员工号',-->
+                        <!--sortable: true-->
+                    <!--}, {-->
+                        <!--field: 'attendanceDate',-->
+                        <!--title: '考勤日期',-->
+                        <!--sortable: true-->
+                    <!--}, {-->
+                        <!--field: 'type',-->
+                        <!--title: '考勤类型',-->
+                        <!--sortable: true,-->
+                        <!--formatter: emailFormatter-->
+                    <!--}, ],-->
+                    <!--onLoadSuccess: function () {-->
+                    <!--},-->
+                    <!--onLoadError: function () {-->
+                        <!--showTips("数据加载失败！");-->
+                    <!--},-->
+                    <!--onDblClickRow: function (row, $element) {-->
+                        <!--var id = row.ID;-->
+                        <!--EditViewById(id, 'view');-->
+                    <!--},-->
+                <!--});-->
+            <!--};-->
+
+        <!--</script>-->
+    </body>

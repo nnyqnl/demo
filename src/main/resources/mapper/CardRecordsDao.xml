@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wenqi.demo.dao.CardRecordsDao" >
+
+    <select id="getbyemployeeNumberAndtoday" resultType="com.wenqi.demo.domain.CardRecords" parameterType="com.wenqi.demo.domain.CardRecords">
+        SELECT c.id FROM card_records c WHERE employee_number=#{employeeNumber} AND card_records_date=#{CardRecordsDate};
+    </select>
+
+    <insert id="insert" parameterType="com.wenqi.demo.domain.CardRecords" >
+        INSERT INTO card_records(employee_number,starttime,endtime,card_records_date) VALUES(#{employeeNumber},#{StartTime},#{EndTime},#{CardRecordsDate});
+    </insert>
+
+    <update id="update" parameterType="com.wenqi.demo.domain.CardRecords" >
+        update card_records
+        set endtime = #{EndTime}
+        where employee_number = #{employeeNumber} AND card_records_date=#{CardRecordsDate};
+    </update>
+
+    <select id="findByCardRecordDate" resultType="com.wenqi.demo.domain.CardRecords" parameterType="java.util.Date">
+        SELECT * FROM card_records WHERE card_records_date=#{yesterday}
+    </select>
+    <!--<delete id="delete" parameterType="int" >-->
+        <!--delete from area-->
+        <!--where area_id = #{areaId}-->
+    <!--</delete>-->
+</mapper>

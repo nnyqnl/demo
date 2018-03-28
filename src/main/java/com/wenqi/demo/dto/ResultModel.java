@@ -1,16 +1,16 @@
 package com.wenqi.demo.dto;
 
-public class ResultDto {
+public class ResultModel {
     private String code;
     private String msg;
-    private Object data;
+    private Object data;//业务数据
 
-    public ResultDto() {
+    public ResultModel() {
     }
 
     @Override
     public String toString() {
-        return "ResultDto{" +
+        return "ResultModel{" +
                 "code='" + code + '\'' +
                 ", msg='" + msg + '\'' +
                 ", data=" + data +
@@ -42,21 +42,25 @@ public class ResultDto {
         return data;
     }
 
-    public ResultDto(String code, String msg, Object data) {
+    public ResultModel(String code, String msg, Object data) {
 
         this.code = code;
         this.msg = msg;
         this.data = data;
     }
+    public ResultModel(String code, String msg) {
+        this.code=code;
+        this.msg=msg;
+    }
 
-    public ResultDto(Object data) {
+    public ResultModel(Object data) {
 
         this.code = "200";
         this.msg = "ok";
         this.data = data;
     }
-    public static ResultDto ok(Object data) {
+    public static ResultModel ok(Object data) {
 
-        return new ResultDto(data);
+        return new ResultModel(data);
     }
 }

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wenqi.demo.dao.AttendanceDao" >
+
+    <select id="search" resultType="com.wenqi.demo.domain.Attendance"
+            parameterType="map">
+         SELECT * FROM attendance a
+            WHERE employee_number=#{employeeNumber}
+            <if test="startDate !=null">
+                <![CDATA[ and attendance_date  >=  #{startDate}  ]]>
+            </if>
+            <if test="endDate !=null"  >
+                <![CDATA[ and attendance_date <=  #{endDate}  ]]>
+            </if>
+
+    </select>
+
+    <!--<select id="getById" resultType="com.wenqi.demo.domain.Area" parameterType="integer">-->
+        <!--SELECT * FROM AREA WHERE area_id=#{areaId}-->
+    <!--</select>-->
+
+    <insert id="insert" parameterType="map">
+        INSERT INTO attendance(employee_number,working_hours,type,attendance_date) VALUES(#{employeeNumber},#{workingHours},#{type},#{attendanceDate});
+    </insert>
+
+    <!--<update id="update" parameterType="com.wenqi.demo.domain.CardRecords" >-->
+        <!--update card_records-->
+        <!--set endtime = #{EndTime}-->
+        <!--where employee_number = #{employeeNumber}-->
+    <!--</update>-->
+
+    <!--<delete id="delete" parameterType="int" >-->
+        <!--delete from area-->
+        <!--where area_id = #{areaId}-->
+    <!--</delete>-->
+</mapper>

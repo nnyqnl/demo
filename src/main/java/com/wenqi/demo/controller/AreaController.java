@@ -1,7 +1,7 @@
 package com.wenqi.demo.controller;
 
 import com.wenqi.demo.domain.Area;
-import com.wenqi.demo.dto.ResultDto;
+import com.wenqi.demo.dto.ResultModel;
 import com.wenqi.demo.service.AreaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -14,46 +14,46 @@ public class AreaController {
     @Autowired
     private AreaService areaService;
     @GetMapping("/getAll")
-    public ResultDto getAll(){
-        ResultDto resultDto=new ResultDto();
+    public ResultModel getAll(){
+        ResultModel ResultModel=new ResultModel();
         List<Area> areas=areaService.getAll();
-        resultDto.setCode("000");
-        resultDto.setMsg("成功");
-        resultDto.setData(areas);
-        return resultDto;
+        ResultModel.setCode("000");
+        ResultModel.setMsg("成功");
+        ResultModel.setData(areas);
+        return ResultModel;
     }
     @GetMapping("/getById")
-    public ResultDto getById(@RequestParam Integer areaId){
-        ResultDto resultDto=new ResultDto();
+    public ResultModel getById(@RequestParam Integer areaId){
+        ResultModel ResultModel=new ResultModel();
         Area area=areaService.getById(areaId);
-        resultDto.setCode("000");
-        resultDto.setMsg("成功");
-        resultDto.setData(area);
-        return resultDto;
+        ResultModel.setCode("000");
+        ResultModel.setMsg("成功");
+        ResultModel.setData(area);
+        return ResultModel;
     }
     @PostMapping("/insert")
-    public ResultDto insert(@RequestBody Area area){
-        ResultDto resultDto=new ResultDto();
+    public ResultModel insert(@RequestBody Area area){
+        ResultModel ResultModel=new ResultModel();
         areaService.save(area);
-        resultDto.setCode("000");
-        resultDto.setMsg("成功");
+        ResultModel.setCode("000");
+        ResultModel.setMsg("成功");
 
-        return resultDto;
+        return ResultModel;
     }
     @PostMapping("/update")
-    public ResultDto update(@RequestBody Area area){
-        ResultDto resultDto=new ResultDto();
+    public ResultModel update(@RequestBody Area area){
+        ResultModel ResultModel=new ResultModel();
         areaService.update(area);
-        resultDto.setCode("000");
-        resultDto.setMsg("成功");
-        return resultDto;
+        ResultModel.setCode("000");
+        ResultModel.setMsg("成功");
+        return ResultModel;
     }
     @PostMapping("/delete")
-    public ResultDto delete(@RequestBody Area area){
-        ResultDto resultDto=new ResultDto();
+    public ResultModel delete(@RequestBody Area area){
+        ResultModel ResultModel=new ResultModel();
         areaService.delete(area.getAreaId());
-        resultDto.setCode("000");
-        resultDto.setMsg("成功");
-        return resultDto;
+        ResultModel.setCode("000");
+        ResultModel.setMsg("成功");
+        return ResultModel;
     }
 }

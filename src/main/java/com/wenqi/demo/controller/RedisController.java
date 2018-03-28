@@ -1,6 +1,6 @@
 package com.wenqi.demo.controller;
 
-import com.wenqi.demo.dto.ResultDto;
+import com.wenqi.demo.dto.ResultModel;
 import com.wenqi.demo.jedis.JedisClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.StringRedisTemplate;
@@ -18,14 +18,14 @@ public class RedisController {
     @Autowired
     private StringRedisTemplate strRedis;
     @GetMapping("/test")
-    public ResultDto test(){
+    public ResultModel test(){
         jedisClient.set("test1","hello");
         String test1 = jedisClient.get("test1");
-        return ResultDto.ok(test1);
+        return ResultModel.ok(test1);
     }
     @GetMapping("/test2")
-    public ResultDto test2(){
+    public ResultModel test2(){
         strRedis.opsForValue().set("test2","hello2");
-        return ResultDto.ok(strRedis.opsForValue().get("test2"));
+        return ResultModel.ok(strRedis.opsForValue().get("test2"));
     }
 }
