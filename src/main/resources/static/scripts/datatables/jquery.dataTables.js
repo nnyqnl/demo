@@ -3040,7 +3040,7 @@
 	 */
 	function _fnFeatureHtmlTable ( oSettings )
 	{
-		/* Check if scrolling is enabled or not - if not then leave the DOM unaltered */
+		/* Check if scrolling is enabled or not - if not then LeaveRecords the DOM unaltered */
 		if ( oSettings.oScroll.sX === "" && oSettings.oScroll.sY === "" )
 		{
 			return oSettings.nTable;
@@ -3121,7 +3121,7 @@
 			nScrollFootTable.style.marginLeft = "0";
 		}
 		
-		/* Move caption elements from the body to the header, footer or leave where it is
+		/* Move caption elements from the body to the header, footer or LeaveRecords where it is
 		 * depending on the configuration. Note that the DTD says there can be only one caption */
 		var nCaption = $(oSettings.nTable).children('caption');
 		if ( nCaption.length > 0 )
@@ -3705,7 +3705,7 @@
 			nWrapper.appendChild( nCalcTmp );
 			
 			/* When scrolling (X or Y) we want to set the width of the table as appropriate. However,
-			 * when not scrolling leave the table width as it is. This results in slightly different,
+			 * when not scrolling LeaveRecords the table width as it is. This results in slightly different,
 			 * but I think correct behaviour
 			 */
 			if ( oSettings.oScroll.sX !== "" && oSettings.oScroll.sXInner !== "" )

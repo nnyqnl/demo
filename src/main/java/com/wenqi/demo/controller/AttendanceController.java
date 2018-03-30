@@ -1,6 +1,7 @@
 package com.wenqi.demo.controller;
 
 import com.wenqi.demo.domain.Attendance;
+import com.wenqi.demo.domain.Employee;
 import com.wenqi.demo.dto.RequestModel;
 import com.wenqi.demo.dto.ResultModel;
 import com.wenqi.demo.enums.MsgEnum;
@@ -9,6 +10,8 @@ import com.wenqi.demo.service.CardRecordsService;
 import com.wenqi.demo.service.impl.AttendanceServiceImpl;
 import com.wenqi.demo.utils.ResultUtil;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.subject.Subject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,6 +47,8 @@ public class AttendanceController extends BaseController{
             e.printStackTrace();
             return new ResultModel(MsgEnum.ParseException.getCode(),MsgEnum.ParseException.getMsg());
         }
+        Employee employee=(Employee) SecurityUtils.getSubject().getPrincipal();
+        requestModel.getParams().put("employeeNumber",employee.getNumber());
         LOGGER.info("调用service入参："+requestModel.toString());
         List<Attendance> list=attendanceService.attendanceSearch(requestModel);
         return ResultModel.ok(list);
@@ -56,10 +61,7 @@ public class AttendanceController extends BaseController{
         //isBlank比isEmpty强大
         //  对应a="   ";isBlank返回true
         //isEmpty返回false
-        if(StringUtils.isBlank(employeeNumber)){
 
-            return false;
-        }
         if(StringUtils.isBlank(attendanceDateRange)){
             return  false;
         }

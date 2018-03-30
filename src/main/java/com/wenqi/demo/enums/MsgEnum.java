@@ -8,6 +8,9 @@ public enum MsgEnum {
 	GirlZhongXue("100","上中学"),
 	GirlXiaoxue("101","上小学"),
 	ParamsUnValidDetails("700", "参数校验不通过! 未通过校验的参数列表: {0}."),
+	UnknownAccount("701","未知的账户"),
+	IncorrectCredentials("702","密码错误"),
+	ShiroException("703","shiro异常"),
 	ParseException("444","解析异常");
 	
 	private String code;

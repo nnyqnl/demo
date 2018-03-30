@@ -790,7 +790,7 @@
             // bind events
             if (options.grid.hoverable) {
                 eventHolder.mousemove(onMouseMove);
-                eventHolder.mouseleave(onMouseLeave);
+                eventHolder.mouseLeaveRecords(onMouseLeaveRecords);
             }
 
             if (options.grid.clickable)
@@ -804,7 +804,7 @@
                 clearTimeout(redrawTimeout);
             
             eventHolder.unbind("mousemove", onMouseMove);
-            eventHolder.unbind("mouseleave", onMouseLeave);
+            eventHolder.unbind("mouseLeaveRecords", onMouseLeaveRecords);
             eventHolder.unbind("click", onClick);
             
             executeHooks(hooks.shutdown, [eventHolder]);
@@ -2341,7 +2341,7 @@
                                        function (s) { return s["hoverable"] != false; });
         }
 
-        function onMouseLeave(e) {
+        function onMouseLeaveRecords(e) {
             if (options.grid.hoverable)
                 triggerClickHoverEvent("plothover", e,
                                        function (s) { return false; });

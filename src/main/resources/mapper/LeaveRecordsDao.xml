@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wenqi.demo.dao.LeaveRecordsDao" >
+
+
+
+    <insert id="insert" parameterType="map">
+        insert into leave_records(employee_number,leave_type,hours,reason,commit_time,
+        is_handle,handle_result,Leave_date,handle_time)
+        values (#{employeeNumber}, #{leaveType}, #{hours}, #{reason}, #{commitTime},
+        #{isHandle}, #{handleResult}, #{leaveDate}, #{handleTime})
+    </insert>
+
+    <!--<update id="update" parameterType="com.wenqi.demo.domain.Area" >-->
+        <!--update area-->
+        <!--set area_name = #{areaName},-->
+        <!--area_priority = #{areaPriority}-->
+        <!--where area_id = #{areaId}-->
+    <!--</update>-->
+
+    <!--<delete id="delete" parameterType="int" >-->
+        <!--delete from area-->
+        <!--where area_id = #{areaId}-->
+    <!--</delete>-->
+</mapper>

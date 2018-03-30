@@ -109,25 +109,26 @@
                                         考勤页面</h3>
                                 </div>
                                 <div class="module-option clearfix">
-                                    <form id="attendanceSearchForm" action="http://localhost:8082/demo/attendance/attendanceSearch" method="get">
+                                    <form id="attendanceSearchForm" method="get">
                                     <div class="input-append pull-left">
 
                                         <button type="button" class="btn">日期</button>
 
                                         <!--<span class="add-on input-group-addon"><i class="glyphicon glyphicon-calendar fa fa-calendar"></i></span>-->
-                                        <input type="text" readonly style="width: 200px" name="attendanceDateRange" id="reservation"
-                                               class="form-control" value=""/>
+                                        <!--<input type="text" readonly style="width: 200px" name="attendanceDateRange" id="reservation"-->
+                                               <!--class="form-control" value=""/>-->
                                         <!--<input type="hidden" readonly style="width: 200px" name="employeeNumber"-->
                                                <!--class="form-control" value="AAA000001"/>-->
 
                                         <!--<button type="button" class="btn">人员类型：</button>-->
 
-                                        <!--<select name="employeeType" class="form-control" onchange="selectOnchang(this)">-->
-                                            <!--<option value="">公司内勤</option>-->
-                                            <!--<option>IT人力</option>-->
-                                            <!--<option>劳务工</option>-->
-                                            <!--<option>临时员工</option>-->
-                                        <!--</select>-->
+                                        <select id="departmentId" name="departmentId" class="form-control" onchange="selectOnchang(this)">
+                                            <option value="1">品管科</option>
+                                            <option value="2">财务科</option>
+                                            <option value="3">制造科</option>
+                                            <option value="4">厂务</option>
+                                            <option value="5">人资</option>
+                                        </select>
                                     </div>
                                     <div class="btn-group pull-right" data-toggle="buttons-radio">
                                         <button type="button" class="btn" onclick="searchBtn()">查询</button>
@@ -173,22 +174,33 @@
                 });
             });
         </script>
-        <!--日历控件 end-->
+        <!--日历控件 end
+         <!--下拉列表选择 start-->
+        <script type="text/javascript">
+            function selectOnchang() {
+                $("departmentId").val(this);
+            }
+        </script>
+        <!--下拉列表选择  end-->
+
 
         <script type="text/javascript">
             var attendanceDate=undefined;
-            function searchBtn() {
-
+            var rtndata =undefined;
+                function searchBtn() {
+                // $('#grid').dataTable().fnClearTable();
                 $.ajax({
-                    url : 'http://localhost:8082/demo/attendance/attendanceSearch',
+                    url : 'http://localhost:8082/demo/employee/list',
                     type : 'get',
                     data : $('#attendanceSearchForm').serialize(),
                     success : function(data){
                         if("200"==data.code){
                             //返回成功
 
+                            rtndata = {rows:data.data};
 
-                            var rtndata = {rows:data.data};
+                            // console.log(rtndata.rows.name)
+                            $('#grid').bootstrapTable('refresh')
                             $('#grid').bootstrapTable({
                                 data:rtndata.rows,
                                 dataType: "json",
@@ -199,7 +211,7 @@
                                 pagination: true, // 开启分页功能
                                 search: false, // 开启搜索功能
                                 showColumns: false, // 开启自定义列显示功能
-                                showRefresh: false, // 开启刷新功能
+                                showRefresh: true, // 开启刷新功能
                                 // queryParams: queryParams,
                                 pageSize: 2, //每页的记录行数（*）
                                 minimumCountColumns: 2, // 设置最少显示列个数
@@ -223,39 +235,48 @@
                                     visible: false,
                                     sortable: true // 开启排序功能
                                 },{
-                                    field: 'employeeNumber',
+                                    field: 'number',
                                     title: '员工工号',
                                     align: 'center',
                                     valign: 'middle',
                                     sortable: true // 开启排序功能
                                 }, {
-                                    field: 'attendanceDate',
-                                    title: '日期',
+                                    field: 'name',
+                                    title: '姓名',
                                     align: 'center',
                                     valign: 'middle',
-                                    sortable: true,
-                                    formatter: function (value, row, index) {
-                                        // return changeDateFormat(value)
-                                        return timestampToTime(value);
-                                    }
+                                    // sortable: true
                                 },{
-                                    field: 'workingHours',
-                                    title: '出勤时间',
+                                    field: 'gender',
+                                    title: '性别',
                                     align: 'center',
                                     valign: 'middle',
-                                    sortable: true // 开启排序功能
+                                    //sortable: true // 开启排序功能
                                 },  {
-                                    field: 'type',
-                                    title: '考勤类型',
+                                    field: 'eduLever',
+                                    title: '学历',
                                     align: 'center',
-                                    valign: 'middle',
-                                    formatter: function (value) {
-                                        if (value == 1) {
-                                            return '正常';
-                                        }
-                                        else
-                                            return '异常';
-                                    }
+                                    valign: 'middle'
+                                },  {
+                                    field: 'cardId',
+                                    title: '身份证号',
+                                    align: 'center',
+                                    valign: 'middle'
+                                },  {
+                                    field: 'telephone',
+                                    title: '手机号',
+                                    align: 'center',
+                                    valign: 'middle'
+                                },  {
+                                    field: 'departmentName',
+                                    title: '部门',
+                                    align: 'center',
+                                    valign: 'middle'
+                                },  {
+                                    field: 'level',
+                                    title: '职位',
+                                    align: 'center',
+                                    valign: 'middle'
                                 }]
 
                         })
