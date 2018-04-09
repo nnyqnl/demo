@@ -1119,7 +1119,7 @@ border-top-left-radius: 3px;
 	padding: 0
 }
 .stream.new-update a, .stream.load-more a {
-	background: #background: #f7f7f7;;
+	background-color: #f7f7f7;;
 	
 	color: #555;
 	font-weight: 600;
@@ -1240,42 +1240,42 @@ border-top-left-radius: 3px;
 .profile-tab-content .stream-list .media:first-child {
 	margin-top: -20px
 }
-.messageEnum .module-option {
+.message .module-option {
 	border-bottom: 0
 }
-.messageEnum .module-body {
+.message .module-body {
 	padding: 0
 }
-.messageEnum .table-messageEnum thead tr.heading td, .messageEnum .table-messageEnum tbody tr.heading td {
+.message .table-message thead tr.heading td, .message .table-message tbody tr.heading td {
 	background: #29b7d3!important;
 	font-weight: bold;
 	border: 0;
 }
-.messageEnum .table-messageEnum tbody td {
+.message .table-message tbody td {
 	}
-.messageEnum .table-messageEnum tbody td.cell-check {
+.message .table-message tbody td.cell-check {
 	width: 20px;
 	text-align: center
 }
-.messageEnum .table-messageEnum tbody td.cell-check input[type="checkbox"] {
+.message .table-message tbody td.cell-check input[type="checkbox"] {
 	margin: 0
 }
-.messageEnum .table-messageEnum tbody td.cell-icon {
+.message .table-message tbody td.cell-icon {
 	text-align: center;
 	padding-left: 0!important;
 	padding-right: 0!important
 }
-.messageEnum .table-messageEnum tbody td.cell-author {
+.message .table-message tbody td.cell-author {
 	width: 150px
 }
-.messageEnum .table-messageEnum tbody td.cell-time {
+.message .table-message tbody td.cell-time {
 	width: 70px
 }
-.messageEnum .table-messageEnum tbody td.cell-status {
+.message .table-message tbody td.cell-status {
 	width: 100px;
 	text-align: center
 }
-.messageEnum .table-messageEnum tbody td.cell-status b {
+.message .table-message tbody td.cell-status b {
 	background: #d74f2a;
 	-webkit-border-radius: 3px;
 	-moz-border-radius: 3px;
@@ -1287,14 +1287,14 @@ border-top-left-radius: 3px;
 	font-size: 11px;
 	text-transform: uppercase
 }
-.messageEnum .table-messageEnum tbody [class^="icon-"], .messageEnum .table-messageEnum tbody [class*=" icon-"] {
+.message .table-message tbody [class^="icon-"], .message .table-message tbody [class*=" icon-"] {
 	font-size: 13px;
 	color: #999
 }
-.messageEnum .table-messageEnum tbody .icon-star {
+.message .table-message tbody .icon-star {
 	color: #ddd
 }
-.messageEnum .table-messageEnum tbody .icon-checker {
+.message .table-message tbody .icon-checker {
 	width: 5px;
 	height: 5px;
 	border: 3px solid #d74f2a;
@@ -1304,44 +1304,44 @@ border-top-left-radius: 3px;
 	display: inline-block;
 	margin: 0 0 0 15px
 }
-.messageEnum  tr.heading {
+.message  tr.heading {
 	color: #fff;
 }
-.messageEnum .table-messageEnum tbody tr.unread {
+.message .table-message tbody tr.unread {
 	font-weight: bold;
 	color: #666
 }
-.messageEnum .table-messageEnum tbody tr.unread td {
+.message .table-message tbody tr.unread td {
 	background: #fff
 }
-.messageEnum .table-messageEnum tbody tr.starred .icon-star {
+.message .table-message tbody tr.starred .icon-star {
 	color: #fd7b12!important
 }
-.messageEnum .table-messageEnum tbody tr.starred .icon-star:hover {
+.message .table-message tbody tr.starred .icon-star:hover {
 	opacity: .6;
 	filter: alpha(opacity=60)
 }
-.messageEnum .table-messageEnum tbody tr:hover td {
+.message .table-message tbody tr:hover td {
 	background: #E8F6E4;
 	cursor: pointer
 }
-.messageEnum .table-messageEnum tbody tr:hover .icon-star {
+.message .table-message tbody tr:hover .icon-star {
 	color: #d9d9a9
 }
-.messageEnum .table-messageEnum tbody tr:hover .icon-star:hover {
+.message .table-message tbody tr:hover .icon-star:hover {
 	color: #adad88;
 	cursor: pointer
 }
-.messageEnum .table-messageEnum tbody tr.task td {
+.message .table-message tbody tr.task td {
 	background: #fff;
 	font-weight: bold
 }
-.messageEnum .table-messageEnum tbody tr.task.resolved td {
+.message .table-message tbody tr.task.resolved td {
 	background: #f5f5f5;
 	color: #999;
 	font-weight: normal
 }
-.messageEnum .table-messageEnum tbody tr.task.resolved .icon-checker {
+.message .table-message tbody tr.task.resolved .icon-checker {
 	border-color: #ddd
 }
 .dataTables_wrapper {

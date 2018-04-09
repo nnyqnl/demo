@@ -23,7 +23,7 @@ public class TastDemo {
 //        System.out.println("执行Quartz定时器任务："+new Date());
 //    }
 
-    @Scheduled(cron = "*0 0 14 * * ? ") //每天下午两点
+    @Scheduled(cron = "0 8 17 * * ? ") //每天下午两点
     public void importCardRecordsToAttendance() throws ParseException {
         LOGGER.info("导入昨天的考勤记录=========================》开始");
 //        System.out.println("每分钟执行一个的定时任务："+new Date());

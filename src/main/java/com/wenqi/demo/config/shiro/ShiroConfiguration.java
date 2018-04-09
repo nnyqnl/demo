@@ -50,7 +50,7 @@ public class ShiroConfiguration {
         // 登录成功后要跳转的链接,successUrl配置只是做为一种附加配置，只有session中没有用户请求地址时才会使用successUrl
         shiroFilterFactoryBean.setSuccessUrl("/index.html");
         // 未授权界面;
-        shiroFilterFactoryBean.setUnauthorizedUrl("/403");
+        shiroFilterFactoryBean.setUnauthorizedUrl("/403.html");
 
 //        //自定义拦截器
 //        Map<String, Filter> filtersMap = new LinkedHashMap<String, Filter>();
@@ -74,12 +74,16 @@ public class ShiroConfiguration {
             filterChainDefinitionMap.put(sysPermissionInit.getUrl(),
                     sysPermissionInit.getPermissionInit());
         }*/
+        //记住我
+//        filterChainDefinitionMap.put("/index.html", "user");
         filterChainDefinitionMap.put("/login.html*", "anon");
         filterChainDefinitionMap.put("/employee/login", "anon");
         filterChainDefinitionMap.put("/css/**", "anon");
         filterChainDefinitionMap.put("/scripts/**", "anon");
         filterChainDefinitionMap.put("/images/**", "anon");
         filterChainDefinitionMap.put("/bootstrap/**", "anon");
+        filterChainDefinitionMap.put("/report/attendance/**", "perms[attendance:export]");
+        filterChainDefinitionMap.put("/employee/logout/**", "logout");
         filterChainDefinitionMap.put("/**", "authc");
         shiroFilterFactoryBean
                 .setFilterChainDefinitionMap(filterChainDefinitionMap);
@@ -96,6 +100,7 @@ public class ShiroConfiguration {
      * cookie对象;
      * @return
      */
+    @Bean
     public SimpleCookie rememberMeCookie(){
        //这个参数是cookie的名称，对应前端的checkbox的name = rememberMe
        SimpleCookie simpleCookie = new SimpleCookie("rememberMe");
@@ -108,6 +113,7 @@ public class ShiroConfiguration {
      * cookie管理对象;记住我功能
      * @return
      */
+    @Bean
     public CookieRememberMeManager rememberMeManager(){
        CookieRememberMeManager cookieRememberMeManager = new CookieRememberMeManager();
        cookieRememberMeManager.setCookie(rememberMeCookie());

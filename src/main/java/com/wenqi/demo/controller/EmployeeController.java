@@ -10,6 +10,7 @@ import com.wenqi.demo.dto.RequestModel;
 import com.wenqi.demo.dto.ResultModel;
 import com.wenqi.demo.enums.MsgEnum;
 import com.wenqi.demo.service.EmployeeService;
+import com.wenqi.demo.utils.CryptographyUtil;
 import com.wenqi.demo.utils.ResultUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.SecurityUtils;
@@ -34,42 +35,13 @@ import java.util.List;
  * 2018年3月28日
  */
 @RestController
-@RequestMapping("/employee")
+@RequestMapping("/employeeManagement")
 public class EmployeeController extends BaseController<Employee>{
 
     private static final Logger LOGGER = LoggerFactory.getLogger(EmployeeController.class);
     @Autowired
     private EmployeeService employeeService;
-	@PostMapping("/login")
-	public ResultModel login(HttpServletRequest request){
-        RequestModel requestModel = super.getRequestModel(request);
-        //入参校验
-        if(!validateRequest(requestModel)){
-            return ResultUtil.buildErrorResultDto(MsgEnum.ParamsUnValidDetails);
-        }
 
-        Subject subject = SecurityUtils.getSubject();
-
-        String employeeNumber =(String) requestModel.getParams().get("employeeNumber");
-        String password = (String)requestModel.getParams().get("password");
-        UsernamePasswordToken token = new UsernamePasswordToken(employeeNumber, password);
-
-        try{
-            subject.login(token);
-            return ResultModel.ok(null);
-        }catch (UnknownAccountException e) {
-            e.printStackTrace();
-            return ResultUtil.buildErrorResultDto(MsgEnum.UnknownAccount);
-        } catch (IncorrectCredentialsException e) {
-            e.printStackTrace();
-            return ResultUtil.buildErrorResultDto(MsgEnum.IncorrectCredentials);
-        } catch (ShiroException e) {
-            e.printStackTrace();
-            return ResultUtil.buildErrorResultDto(MsgEnum.ShiroException);
-        }
-
-
-	}
 
     @GetMapping("/list")
     public ResultModel listByDepartmentId(HttpServletRequest request){
@@ -84,19 +56,5 @@ public class EmployeeController extends BaseController<Employee>{
         return ResultModel.ok(list);
 
     }
-    private boolean validateRequest(RequestModel requestModel) {
-        String employeeNumber =(String) requestModel.getParams().get("employeeNumber");
-        String password = (String)requestModel.getParams().get("password");
 
-        //isBlank比isEmpty强大
-        //  对应a="   ";isBlank返回true
-        //isEmpty返回false
-        if(StringUtils.isBlank(employeeNumber)){
-            return false;
-        }
-        if(StringUtils.isBlank(password)){
-            return false;
-        }
-        return true;
-    }
 }

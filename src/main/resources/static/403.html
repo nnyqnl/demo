@@ -108,43 +108,43 @@
                             <div class="module messageEnum">
                                 <div class="module-head">
                                     <h3>
-                                        考勤页面</h3>
+                                        权限不足</h3>
                                 </div>
-                                <div class="module-option clearfix">
-                                    <form id="attendanceSearchForm" action="http://localhost:8082/demo/attendance/attendanceSearch" method="get">
-                                    <div class="input-append pull-left">
+                                <!--<div class="module-option clearfix">-->
+                                    <!--<form id="attendanceSearchForm" action="http://localhost:8082/demo/attendance/attendanceSearch" method="get">-->
+                                    <!--<div class="input-append pull-left">-->
 
-                                        <button type="button" class="btn">日期</button>
+                                        <!--<button type="button" class="btn">日期</button>-->
 
-                                        <!--<span class="add-on input-group-addon"><i class="glyphicon glyphicon-calendar fa fa-calendar"></i></span>-->
-                                        <input type="text" readonly style="width: 200px" name="attendanceDateRange" id="reservation"
-                                               class="form-control" value=""/>
-                                        <!--<input type="hidden" readonly style="width: 200px" name="employeeNumber"-->
-                                               <!--class="form-control" value="AAA000001"/>-->
+                                        <!--&lt;!&ndash;<span class="add-on input-group-addon"><i class="glyphicon glyphicon-calendar fa fa-calendar"></i></span>&ndash;&gt;-->
+                                        <!--<input type="text" readonly style="width: 200px" name="attendanceDateRange" id="reservation"-->
+                                               <!--class="form-control" value=""/>-->
+                                        <!--&lt;!&ndash;<input type="hidden" readonly style="width: 200px" name="employeeNumber"&ndash;&gt;-->
+                                               <!--&lt;!&ndash;class="form-control" value="AAA000001"/>&ndash;&gt;-->
 
-                                        <!--<button type="button" class="btn">人员类型：</button>-->
+                                        <!--&lt;!&ndash;<button type="button" class="btn">人员类型：</button>&ndash;&gt;-->
 
-                                        <!--<select name="employeeType" class="form-control" onchange="selectOnchang(this)">-->
-                                            <!--<option value="">公司内勤</option>-->
-                                            <!--<option>IT人力</option>-->
-                                            <!--<option>劳务工</option>-->
-                                            <!--<option>临时员工</option>-->
-                                        <!--</select>-->
-                                    </div>
-                                    <div class="btn-group pull-right" data-toggle="buttons-radio">
-                                        <button type="button" class="btn" onclick="searchBtn()">查询</button>
-                                        <button type="button" class="btn" onclick="exportAttendanceBtn()">导出</button>
-                                    </div>
-                                    </form>
-                                </div>
-                                <!--中间的部分-->
-                                <div class="module-body table">
-                                    <table id="grid" class="table">
+                                        <!--&lt;!&ndash;<select name="employeeType" class="form-control" onchange="selectOnchang(this)">&ndash;&gt;-->
+                                            <!--&lt;!&ndash;<option value="">公司内勤</option>&ndash;&gt;-->
+                                            <!--&lt;!&ndash;<option>IT人力</option>&ndash;&gt;-->
+                                            <!--&lt;!&ndash;<option>劳务工</option>&ndash;&gt;-->
+                                            <!--&lt;!&ndash;<option>临时员工</option>&ndash;&gt;-->
+                                        <!--&lt;!&ndash;</select>&ndash;&gt;-->
+                                    <!--</div>-->
+                                    <!--<div class="btn-group pull-right" data-toggle="buttons-radio">-->
+                                        <!--<button type="button" class="btn" onclick="searchBtn()">查询</button>-->
+                                        <!--<button type="button" class="btn" onclick="exportAttendanceBtn()">导出</button>-->
+                                    <!--</div>-->
+                                    <!--</form>-->
+                                <!--</div>-->
+                                <!--&lt;!&ndash;中间的部分&ndash;&gt;-->
+                                <!--<div class="module-body table">-->
+                                    <!--<table id="grid" class="table">-->
 
-                                    </table>
-                                </div>
-                                <div class="module-foot">
-                                </div>
+                                    <!--</table>-->
+                                <!--</div>-->
+                                <!--<div class="module-foot">-->
+                                <!--</div>-->
                             </div>
                         </div>
                         <!--/.content-->
@@ -188,6 +188,8 @@
                     success : function(data){
                         if("200"==data.code){
                             //返回成功
+
+
                             var rtndata = {rows:data.data};
                             $('#grid').bootstrapTable({
                                 data:rtndata.rows,
@@ -260,8 +262,6 @@
 
                         })
 
-                        }else {
-                            alert(data.msg);
                         }
                     }
                 });

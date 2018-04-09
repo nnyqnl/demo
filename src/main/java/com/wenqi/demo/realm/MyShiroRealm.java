@@ -2,7 +2,11 @@ package com.wenqi.demo.realm;
 
 import com.wenqi.demo.controller.EmployeeController;
 import com.wenqi.demo.domain.Employee;
+import com.wenqi.demo.domain.Permission;
+import com.wenqi.demo.domain.Role;
 import com.wenqi.demo.service.EmployeeService;
+import com.wenqi.demo.service.PermissionService;
+import com.wenqi.demo.service.RoleService;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
@@ -14,13 +18,19 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 public class MyShiroRealm extends AuthorizingRealm {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(EmployeeController.class);
     @Autowired
     private EmployeeService employeeService;
+    @Autowired
+    private RoleService roleService;
+    @Autowired
+    private PermissionService permissionService;
     /**
      * 授权用户权限
      */
@@ -28,19 +38,22 @@ public class MyShiroRealm extends AuthorizingRealm {
     protected AuthorizationInfo doGetAuthorizationInfo(
             PrincipalCollection principals) {
         //获取用户角色用户
-//        User user = (User) SecurityUtils.getSubject().getPrincipal();
+        Employee employee = (Employee) SecurityUtils.getSubject().getPrincipal();
         SimpleAuthorizationInfo info =  new SimpleAuthorizationInfo();
+
+
 //        SimpleAuthorizationInfo//获取用户角色
-//        Set<String> roleSet = new HashSet<String>();
-//        roleSet.add("100002");
-//        info.setRoles(roleSet);
+        List<Role> roles=roleService.findByEmployee(employee);
+        for (Role role: roles) {
+            info.addRole(role.getRoleName());
+        }
+
 //
 //        //获取用户权限
-//        Set<String> permissionSet = new HashSet<String>();
-//        permissionSet.add("权限添加");
-//        permissionSet.add("权限删除");
-//        info.setStringPermissions(permissionSet);
-
+        List<Permission> permissions=permissionService.findByEmployee(employee);
+        for (Permission permission: permissions) {
+            info.addStringPermission(permission.getPermissionName());
+        }
 
         return info;
     }

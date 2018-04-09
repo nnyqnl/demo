@@ -578,7 +578,7 @@ var Carousel = function ($$$1) {
     SLID: "slid" + EVENT_KEY,
     KEYDOWN: "keydown" + EVENT_KEY,
     MOUSEENTER: "mouseenter" + EVENT_KEY,
-    MOUSELeaveRecords: "mouseLeaveRecords" + EVENT_KEY,
+    MOUSELEAVE: "mouseleave" + EVENT_KEY,
     TOUCHEND: "touchend" + EVENT_KEY,
     LOAD_DATA_API: "load" + EVENT_KEY + DATA_API_KEY,
     CLICK_DATA_API: "click" + EVENT_KEY + DATA_API_KEY
@@ -740,12 +740,12 @@ var Carousel = function ($$$1) {
       if (this._config.pause === 'hover') {
         $$$1(this._element).on(Event.MOUSEENTER, function (event) {
           return _this2.pause(event);
-        }).on(Event.MOUSELeaveRecords, function (event) {
+        }).on(Event.MOUSELEAVE, function (event) {
           return _this2.cycle(event);
         });
 
         if ('ontouchstart' in document.documentElement) {
-          // If it's a touch-enabled device, mouseenter/LeaveRecords are fired as
+          // If it's a touch-enabled device, mouseenter/leave are fired as
           // part of the mouse compatibility events on first tap - the carousel
           // would stop cycling until user tapped out of it;
           // here, we listen for touchend, explicitly pause the carousel
@@ -2506,7 +2506,7 @@ var Tooltip = function ($$$1) {
     FOCUSIN: "focusin" + EVENT_KEY,
     FOCUSOUT: "focusout" + EVENT_KEY,
     MOUSEENTER: "mouseenter" + EVENT_KEY,
-    MOUSELeaveRecords: "mouseLeaveRecords" + EVENT_KEY
+    MOUSELEAVE: "mouseleave" + EVENT_KEY
   };
   var ClassName = {
     FADE: 'fade',
@@ -2591,11 +2591,11 @@ var Tooltip = function ($$$1) {
         if (context._isWithActiveTrigger()) {
           context._enter(null, context);
         } else {
-          context._LeaveRecords(null, context);
+          context._leave(null, context);
         }
       } else {
         if ($$$1(this.getTipElement()).hasClass(ClassName.SHOW)) {
-          this._LeaveRecords(null, this);
+          this._leave(null, this);
 
           return;
         }
@@ -2713,7 +2713,7 @@ var Tooltip = function ($$$1) {
           $$$1(_this.element).trigger(_this.constructor.Event.SHOWN);
 
           if (prevHoverState === HoverState.OUT) {
-            _this._LeaveRecords(null, _this);
+            _this._leave(null, _this);
           }
         };
 
@@ -2846,11 +2846,11 @@ var Tooltip = function ($$$1) {
           });
         } else if (trigger !== Trigger.MANUAL) {
           var eventIn = trigger === Trigger.HOVER ? _this3.constructor.Event.MOUSEENTER : _this3.constructor.Event.FOCUSIN;
-          var eventOut = trigger === Trigger.HOVER ? _this3.constructor.Event.MOUSELeaveRecords : _this3.constructor.Event.FOCUSOUT;
+          var eventOut = trigger === Trigger.HOVER ? _this3.constructor.Event.MOUSELEAVE : _this3.constructor.Event.FOCUSOUT;
           $$$1(_this3.element).on(eventIn, _this3.config.selector, function (event) {
             return _this3._enter(event);
           }).on(eventOut, _this3.config.selector, function (event) {
-            return _this3._LeaveRecords(event);
+            return _this3._leave(event);
           });
         }
 
@@ -2911,7 +2911,7 @@ var Tooltip = function ($$$1) {
       }, context.config.delay.show);
     };
 
-    _proto._LeaveRecords = function _LeaveRecords(event, context) {
+    _proto._leave = function _leave(event, context) {
       var dataKey = this.constructor.DATA_KEY;
       context = context || $$$1(event.currentTarget).data(dataKey);
 
@@ -3148,7 +3148,7 @@ var Popover = function ($$$1) {
     FOCUSIN: "focusin" + EVENT_KEY,
     FOCUSOUT: "focusout" + EVENT_KEY,
     MOUSEENTER: "mouseenter" + EVENT_KEY,
-    MOUSELeaveRecords: "mouseLeaveRecords" + EVENT_KEY
+    MOUSELEAVE: "mouseleave" + EVENT_KEY
     /**
      * ------------------------------------------------------------------------
      * Class Definition

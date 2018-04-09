@@ -11,7 +11,7 @@
         <link type="text/css" href="css/theme.css" rel="stylesheet">
         <link type="text/css" href="images/icons/css/font-awesome.css" rel="stylesheet">
         <link type="text/css" href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,400,600'
-            rel='stylesheet'>
+              rel='stylesheet'>
         <link rel="stylesheet" type="text/css" media="all" href="bootstrap/css/daterangepicker-bs3.css" />
         <link rel="stylesheet" type="text/css" media="all" href="bootstrap/css/bootstrap-table.css" />
 
@@ -77,8 +77,10 @@
                                 <li><a href="task.html"><i class="menu-icon icon-tasks"></i>加班</a></li>
                             </ul>
                             <!--/.widget-nav-->
+
+
                             <ul class="widget widget-menu unstyled">
-                                <li><a href="ui-button-icon.html"><i class="menu-icon icon-bold"></i> Buttons </a></li>
+                                <li><a href="employee.html"><i class="menu-icon icon-bold"></i>员工管理</a></li>
                                 <li><a href="ui-typography.html"><i class="menu-icon icon-book"></i>Typography </a></li>
                                 <li><a href="form.html"><i class="menu-icon icon-paste"></i>Forms </a></li>
                                 <li><a href="table.html"><i class="menu-icon icon-table"></i>Tables </a></li>
@@ -133,6 +135,10 @@
                                     <div class="btn-group pull-right" data-toggle="buttons-radio">
                                         <button type="button" class="btn" onclick="searchBtn()">查询</button>
                                         <button type="button" class="btn">导出</button>
+                                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong">
+                                            Launch demo modal
+                                        </button>
+
                                     </div>
                                     </form>
                                 </div>
@@ -160,6 +166,27 @@
             </div>
         </div>
 
+
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        ...
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Save changes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
         <script type="text/javascript" src="scripts/jquery-1.11.3.min.js"></script>
         <script type="text/javascript" src="scripts/jquery-ui-1.10.1.custom.min.js"></script>
         <script type="text/javascript" src="bootstrap/js/bootstrap.js"></script>
@@ -190,7 +217,7 @@
                 function searchBtn() {
                 // $('#grid').dataTable().fnClearTable();
                 $.ajax({
-                    url : 'http://localhost:8082/demo/employee/list',
+                    url : 'http://localhost:8082/demo/employeeManagement/list',
                     type : 'get',
                     data : $('#attendanceSearchForm').serialize(),
                     success : function(data){
@@ -300,75 +327,6 @@
                 return Y+M+D;
             }
         </script>
-        <!--<script type="text/javascript">-->
-            <!--var $table;-->
-            <!--//初始化bootstrap-table的内容-->
-            <!--function searchBtn () {-->
-                <!--//记录页面bootstrap-table全局变量$table，方便应用-->
-                <!--var queryUrl = 'http://localhost:8082/demo/attendance/attendanceSearch'-->
-                <!--$table = $('#grid').bootstrapTable({-->
-                    <!--url: queryUrl,                      //请求后台的URL（*）-->
-                    <!--method: 'GET',                      //请求方式（*）-->
-                    <!--//toolbar: '#toolbar',              //工具按钮用哪个容器-->
-                    <!--striped: true,                      //是否显示行间隔色-->
-                    <!--cache: false,                       //是否使用缓存，默认为true，所以一般情况下需要设置一下这个属性（*）-->
-                    <!--pagination: true,                   //是否显示分页（*）-->
-                    <!--sortable: true,                     //是否启用排序-->
-                    <!--sortOrder: "asc",                   //排序方式-->
-                    <!--sidePagination: "server",           //分页方式：client客户端分页，server服务端分页（*）-->
-                    <!--pageNumber: 1,                      //初始化加载第一页，默认第一页,并记录-->
-                    <!--pageSize: 10,                     //每页的记录行数（*）-->
-                    <!--pageList: [10, 25, 50, 100],        //可供选择的每页的行数（*）-->
-                    <!--search: false,                      //是否显示表格搜索-->
-                    <!--strictSearch: true,-->
-                    <!--showColumns: true,                  //是否显示所有的列（选择显示的列）-->
-                    <!--showRefresh: true,                  //是否显示刷新按钮-->
-                    <!--minimumCountColumns: 2,             //最少允许的列数-->
-                    <!--clickToSelect: true,                //是否启用点击选中行-->
-                    <!--//height: 500,                      //行高，如果没有设置height属性，表格自动根据记录条数觉得表格高度-->
-                    <!--uniqueId: "ID",                     //每一行的唯一标识，一般为主键列-->
-                    <!--showToggle: true,                   //是否显示详细视图和列表视图的切换按钮-->
-                    <!--cardView: false,                    //是否显示详细视图-->
-                    <!--detailView: false,                  //是否显示父子表-->
-                    <!--//得到查询的参数-->
-                    <!--queryParams : function (params) {-->
-                        <!--//这里的键的名字和控制器的变量名必须一直，这边改动，控制器也需要改成一样的-->
-                        <!--var temp = {-->
-                            <!--rows: params.limit,                         //页面大小-->
-                            <!--page: (params.offset / params.limit) + 1,   //页码-->
-                            <!--sort: params.sort,      //排序列名-->
-                            <!--sortOrder: params.order //排位命令（desc，asc）-->
-                        <!--};-->
-                        <!--return temp;-->
-                    <!--},-->
-                    <!--columns: [{-->
-                        <!--checkbox: true,-->
-                        <!--visible: true                  //是否显示复选框-->
-                    <!--}, {-->
-                        <!--field: 'employeeNumber',-->
-                        <!--title: '员工号',-->
-                        <!--sortable: true-->
-                    <!--}, {-->
-                        <!--field: 'attendanceDate',-->
-                        <!--title: '考勤日期',-->
-                        <!--sortable: true-->
-                    <!--}, {-->
-                        <!--field: 'type',-->
-                        <!--title: '考勤类型',-->
-                        <!--sortable: true,-->
-                        <!--formatter: emailFormatter-->
-                    <!--}, ],-->
-                    <!--onLoadSuccess: function () {-->
-                    <!--},-->
-                    <!--onLoadError: function () {-->
-                        <!--showTips("数据加载失败！");-->
-                    <!--},-->
-                    <!--onDblClickRow: function (row, $element) {-->
-                        <!--var id = row.ID;-->
-                        <!--EditViewById(id, 'view');-->
-                    <!--},-->
-                <!--});-->
-            <!--};-->
 
-        <!--</script>-->
+
     </body>
