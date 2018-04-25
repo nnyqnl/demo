@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wenqi.demo.dao.AppUpdateDao" >
+
+    <select id="searchIsUpdate" resultType="string" parameterType="map">
+        SELECT MAX('x') FROM VERSION v WHERE ios_update='Y' AND branch ='0' AND ios_version> #{version}+1
+    </select>
+
+    <!--<select id="getById" resultType="com.wenqi.demo.domain.Area" parameterType="integer">-->
+        <!--SELECT * FROM AREA WHERE area_id=#{areaId}-->
+    <!--</select>-->
+
+    <!--<insert id="save" parameterType="area" >-->
+        <!--insert into AREA(area_name,area_priority) values (#{areaName}, #{areaPriority})-->
+    <!--</insert>-->
+
+    <!--<update id="update" parameterType="com.wenqi.demo.domain.Area" >-->
+        <!--update area-->
+        <!--set area_name = #{areaName},-->
+        <!--area_priority = #{areaPriority}-->
+        <!--where area_id = #{areaId}-->
+    <!--</update>-->
+
+    <!--<delete id="delete" parameterType="int" >-->
+        <!--delete from area-->
+        <!--where area_id = #{areaId}-->
+    <!--</delete>-->
+</mapper>
