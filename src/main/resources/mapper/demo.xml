@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wenqi.demo.dao.DemoDao" >
+
+    <select id="getById" resultType="map" parameterType="int">
+
+        SELECT d.status,d.type FROM demo d WHERE id=#{id}
+    </select>
+
+    <select id="getDemoById" resultType="com.wenqi.demo.domain.Demo" parameterType="int">
+
+        SELECT d.status,d.type FROM demo d WHERE id=#{id}
+    </select>
+
+    <select id="getByOther" resultType="map" parameterType="string">
+
+        SELECT d.status,d.type FROM demo d WHERE other =#{other}
+    </select>
+
+    <!--<select id="listByDepartmentId" resultType="com.wenqi.demo.domain.Employee" parameterType="map">-->
+        <!--SELECT * FROM employee WHERE department_id=#{departmentId}-->
+    <!--</select>-->
+
+    <!--<insert id="save" parameterType="area" >-->
+        <!--insert into AREA(area_name,area_priority) values (#{areaName}, #{areaPriority})-->
+    <!--</insert>-->
+
+    <!--<update id="update" parameterType="com.wenqi.demo.domain.Area" >-->
+        <!--update area-->
+        <!--set area_name = #{areaName},-->
+        <!--area_priority = #{areaPriority}-->
+        <!--where area_id = #{areaId}-->
+    <!--</update>-->
+
+    <!--<delete id="delete" parameterType="int" >-->
+        <!--delete from area-->
+        <!--where area_id = #{areaId}-->
+    <!--</delete>-->
+</mapper>
