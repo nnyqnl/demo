@@ -9,12 +9,17 @@
 
     <select id="getDemoById" resultType="com.wenqi.demo.domain.Demo" parameterType="int">
 
-        SELECT d.status,d.type FROM demo d WHERE id=#{id}
+        SELECT d.status,d.type,d.demo_time AS demoTime FROM demo d WHERE id=#{id}
     </select>
 
     <select id="getByOther" resultType="map" parameterType="string">
 
         SELECT d.status,d.type FROM demo d WHERE other =#{other}
+    </select>
+
+    <select id="getMapById" resultType="java.util.Map" parameterType="int">
+
+        SELECT d.status,d.type,d.demo_time AS demoTime FROM demo d WHERE id=#{id}
     </select>
 
     <!--<select id="listByDepartmentId" resultType="com.wenqi.demo.domain.Employee" parameterType="map">-->

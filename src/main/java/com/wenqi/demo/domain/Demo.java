@@ -2,9 +2,18 @@ package com.wenqi.demo.domain;
 
 public class Demo {
     private Integer id;
-    private Short status;
-    private Byte type;
+    private String status;
+    private String type;
     private String other;
+    private String demoTime;
+
+    public String getDemoTime() {
+        return demoTime;
+    }
+
+    public void setDemoTime(String demoTime) {
+        this.demoTime = demoTime;
+    }
 
     public Integer getId() {
         return id;
@@ -14,19 +23,19 @@ public class Demo {
         this.id = id;
     }
 
-    public Short getStatus() {
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(Short status) {
+    public void setStatus(String status) {
         this.status = status;
     }
 
-    public Byte getType() {
+    public String getType() {
         return type;
     }
 
-    public void setType(Byte type) {
+    public void setType(String type) {
         this.type = type;
     }
 

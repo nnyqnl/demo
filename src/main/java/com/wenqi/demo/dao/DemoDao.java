@@ -21,4 +21,5 @@ public interface DemoDao {
 
     List<Map> getByOther(String other);
 
+    Map<String,String> getMapById(Integer id);
 }

@@ -36,21 +36,25 @@ public class MailUtil {
     private static String getSender() {
         return mailUtil.sender;
     }
-    public static void sendMail(String to,String[] cc,String subject,String text) throws Exception {
+    public static void sendMail(String[] to,String[] cc,String[] bcc,String subject,String text) throws Exception {
         SimpleMailMessage message = new SimpleMailMessage();
         message.setFrom(getSender());
         //"15560108972@sina.cn"
         //1319533492@qq.com
         message.setTo(to); //自己给自己发送邮件
-        if(cc!=null){
+
+        if(cc!=null&&cc.length>0){
             message.setCc(cc);
+        }
+        if(bcc!=null&&bcc.length>0){
+            message.setBcc(bcc);
         }
         message.setSubject(subject);
         message.setText(text);
         getJavaMailSender().send(message);
         System.out.println("==============发送成功");
     }
-    public static void sendMail(String to,String[] cc,String subject, String text,
+    public static void sendMail(String[] to,String[] cc,String subject, String text,
                                       FileSystemResource file,String fileName) throws Exception {
         MimeMessage message = null;
         try {

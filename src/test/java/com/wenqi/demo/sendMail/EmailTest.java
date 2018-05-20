@@ -83,18 +83,20 @@ public class EmailTest {
     }
     @Test
     public void test() throws Exception {
-        FileSystemResource file = new FileSystemResource(new File("src/main/resources/static/images/user.png"));
-        String[] cc={"15538103935@163.com","1319533492@qq.com"};
-        MailUtil.sendMail("840657252@qq.com",cc,
-                null,
+        FileSystemResource file = new FileSystemResource(new File("C:\\Users\\Administrator\\Desktop\\新建文件夹\\idea快捷键.txt"));
+        String[] cc={"15538103935@163.com","15560108972@sina.cn"};
+        String[] to={"15538103935@163.com","1319533492@qq.com"};
+        MailUtil.sendMail(to,cc,
+                "idea快捷键",
                 "<h1>大标题-h1</h1><p style='color:#F00'>红色字</p><p style='text-align:right'>右对齐</p>",
-                file,"user.png");
+                file,"idea快捷键.text");
     }
     @Test
     public void test2() throws Exception {
         FileSystemResource file = new FileSystemResource(new File("src/main/resources/static/images/user.png"));
         String[] cc={"15538103935@163.com","1319533492@qq.com"};
-        MailUtil.sendMail("840657252@qq.com",cc,
+        String[] to={"840657252@qq.com"};
+        MailUtil.sendMail(to,cc,null,
                 "追风筝的人",
                 "逐渐逝去" );
     }

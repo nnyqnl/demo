@@ -5,10 +5,11 @@
  */
 package com.wenqi.demo.controller;
 
-import com.alibaba.druid.sql.visitor.functions.If;
+import com.alibaba.druid.support.json.JSONUtils;
+import com.alibaba.fastjson.JSON;
+import com.fasterxml.jackson.databind.util.JSONPObject;
 import com.wenqi.demo.dao.DemoDao;
 import com.wenqi.demo.domain.Demo;
-import com.wenqi.demo.utils.MailUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -42,15 +43,29 @@ public class DemoController {
     @PostMapping(value = "/getDemoById")
 	public Demo getDemoById(@RequestParam Integer id){
         Demo demo = demoDao.getDemoById(id);
+        String s = JSON.toJSONString(demo);
 
-        if(1==demo.getStatus()){
-            System.out.println("hahahha=----------------------");
-        }
+//        if(1==demo.getStatus()){
+//            System.out.println("hahahha=----------------------");
+//        }
+        System.out.println(s);
         System.out.println(demo.getStatus().getClass());
         System.out.println(demo.getType().getClass());
 
         return demo;
 	}
+    @PostMapping(value = "/getMapById")
+    public Map<String,String> getMapById(@RequestParam Integer id){
+        Map<String,String> map= demoDao.getMapById(id);
+        String s = JSON.toJSONString(map);
+//        if(1==demo.getStatus()){
+//            System.out.println("hahahha=----------------------");
+//        }
+        System.out.println(s);
+
+
+        return map;
+    }
 
 
     @GetMapping("/getByOther/{other}")
